@@ -1,5 +1,7 @@
 <?php
 
+include_once "templates.php";
+
 session_start();
 
 ?>
@@ -7,15 +9,10 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1">
     <title>The Toaster</title>
+    <meta name="viewport" content="initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <div id="main-menu" class="screen scene" style="display: none;">
@@ -23,13 +20,13 @@ session_start();
         <div class="container centered window">
             <h1 class="text-center">The Toaster<br>
                 <small>
-                    <?php if (isset($_SESSION["login"])): ?>Welcome, <a role="button" onclick="scene(STATE_PROFILE)"><?= $_SESSION["login"] ?></a><?php else: ?><a role="button" onclick="scene(STATE_LOGIN)">Login</a><?php endif; ?>
+                    <?php if (isset($_SESSION["login"])): ?>Welcome, <a role="button" onclick="scene(STATE_PROFILE);"><?= $_SESSION["login"] ?></a><?php else: ?><a role="button" onclick="scene(STATE_LOGIN)">Login</a><?php endif; ?>
                 </small>
             </h1>
-            <button type="button" class="btn btn-primary btn-main-menu" onclick="scene(STATE_GAME);">Toastbox</button>
-            <button type="button" class="btn btn-primary btn-main-menu" disabled>Time-limit</button>
-            <button type="button" class="btn btn-primary btn-main-menu" disabled>Toast-limit</button>
-            <button type="button" class="btn btn-danger btn-main-menu" disabled>Hardcore</button>
+            <button type="button" class="btn btn-primary" onclick="scene(STATE_GAME);">Toastbox</button>
+            <button type="button" class="btn btn-primary" disabled>Time-limit</button>
+            <button type="button" class="btn btn-primary" disabled>Toast-limit</button>
+            <button type="button" class="btn btn-danger" disabled>Hardcore</button>
         </div>
     </div>
     <div style="position: absolute; bottom: 0; right: 0; background-color: white; padding: 5px 10px;">
@@ -39,8 +36,8 @@ session_start();
 <div id="login" class="screen scene" style="display: none;">
     <div style="position: relative; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
         <div class="container centered window text-center">
-            <h2 class="text-center">Login</h2>
-            <form method="get" action="auth.php">
+            <h2 class="text-center">Login <small><a role="button" onclick="scene(STATE_SIGNUP);">Sign Up</a></small></h2>
+            <form method="post" action="auth.php">
                 <input type="hidden" name="q" value="login">
                 <div class="form-group">
                     <label for="login-input">Login</label>
@@ -58,11 +55,33 @@ session_start();
         </div>
     </div>
 </div>
+<div id="signup" class="screen scene" style="display: none;">
+    <div style="position: relative; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
+        <div class="container centered window text-center">
+            <h2 class="text-center">Sign Up</h2>
+            <form method="post" action="auth.php">
+                <input type="hidden" name="q" value="signup">
+                <div class="form-group">
+                    <label for="signup-login-input">Login</label>
+                    <input type="text" class="form-control" id="signup-login-input" name="login" placeholder="Login">
+                </div>
+                <div class="form-group">
+                    <label for="signup-pass-input">Password</label>
+                    <input type="password" class="form-control" id="signup-pass-input" name="pass" placeholder="Password">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <button type="button" class="btn btn-danger" onclick="scene(STATE_MAINMENU)">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div id="profile" class="screen scene" style="display: none;">
     <div style="position: relative; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
         <div class="container centered window text-center">
             <h2 class="text-center"><?= $_SESSION["login"] ?></h2>
-            <form method="get" action="auth.php">
+            <form method="post" action="auth.php">
                 <input type="hidden" name="q" value="logout">
                 <button type="button" class="btn btn-primary" onclick="scene(STATE_MAINMENU);">OK</button>
                 <input type="submit" class="btn btn-danger" value="Logout">
