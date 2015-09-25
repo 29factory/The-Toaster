@@ -1,8 +1,9 @@
 const STATE_MAINMENU = 0;
 const STATE_LOGIN = 1;
-const STATE_GAME = 2;
-const STATE_PAUSE = 3;
-const STATE_PROFILE = 4;
+const STATE_SIGNUP = 2;
+const STATE_GAME = 3;
+const STATE_PAUSE = 4;
+const STATE_PROFILE = 5;
 
 const GAME_TOASTBOX = 0;
 
@@ -58,6 +59,8 @@ function scene(nextState) {
         document.getElementById("login").style.display = "none";
     } else if (game.state == STATE_PROFILE) {
         document.getElementById("profile").style.display = "none";
+    } else if (game.state == STATE_SIGNUP) {
+        document.getElementById("signup").style.display = "none";
     }
     game.state = nextState;
     if (game.state == STATE_MAINMENU) {
@@ -70,6 +73,8 @@ function scene(nextState) {
         document.getElementById("login").style.display = "";
     } else if (game.state == STATE_PROFILE) {
         document.getElementById("profile").style.display = "";
+    } else if (game.state == STATE_SIGNUP) {
+        document.getElementById("signup").style.display = "";
     }
 }
 
@@ -82,4 +87,5 @@ document.createElement("img").setAttribute("src", "assets/icons/make.svg");
 document.createElement("img").setAttribute("src", "assets/icons/pause.svg");
 document.createElement("img").setAttribute("src", "assets/icons/quit.svg");
 document.createElement("img").setAttribute("src", "assets/icons/resume.svg");
+
 scene(STATE_MAINMENU);
