@@ -5,7 +5,7 @@ const STATE_GAME = 3;
 const STATE_PAUSE = 4;
 const STATE_PROFILE = 5;
 
-const GAME_TOASTBOX = 0;
+const GAMEMODE_TOASTBOX = 0;
 
 const STATUS_EMPTY = 0;
 const STATUS_BREAD = 1;
@@ -46,18 +46,26 @@ function updateImage() {
     else if (game.toasterStatus == STATUS_COAL) document.getElementById("image").setAttribute("src", "assets/toaster-coal.svg");
 }
 
+function endgame() {
+    var request = new XMLHttpRequest();
+    request.open("POST", "game.php?q=endgame&score="+game.score+"&gamemode="+GAMEMODE_TOASTBOX, true);
+    request.send();
+    // request.onreadystatechange = function() {if (request.readyState == 4) if (request.status == 200) alert(request.responseText)}
+    game.score = 0;
+    game.toasterStatus = STATUS_EMPTY;
+    updateScore();
+    updateImage();
+}
+
 function scene(nextState) {
     if (game.state == STATE_MAINMENU) {
-        if (nextState != STATE_LOGIN) {
+        if (nextState == STATE_PROFILE || STATE_GAME) {
             document.getElementById("main-menu").style.display = "none";
-            game.score = 0;
-            game.toasterStatus = STATUS_EMPTY;
-            updateScore();
-            updateImage();
         }
     } else if (game.state == STATE_PAUSE) {
         if (nextState == STATE_GAME) document.getElementById("pause").style.display = "none";
         else if (nextState == STATE_MAINMENU) {
+            endgame();
             document.getElementById("pause").style.display = "none";
             document.getElementById("game").style.display = "none";
         }
@@ -94,4 +102,8 @@ document.createElement("img").setAttribute("src", "assets/icons/pause.svg");
 document.createElement("img").setAttribute("src", "assets/icons/quit.svg");
 document.createElement("img").setAttribute("src", "assets/icons/resume.svg");
 
+game.score = 0;
+game.toasterStatus = STATUS_EMPTY;
+updateScore();
+updateImage();
 scene(STATE_MAINMENU);
