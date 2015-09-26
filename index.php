@@ -12,6 +12,7 @@ session_start();
     <title>The Toaster</title>
     <meta name="viewport" content="initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
 </head>
 <body>
@@ -92,7 +93,7 @@ session_start();
 <div id="game" class="screen scene" style="display: none;">
     <div style="position: relative; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
         <div class="container centered window text-center">
-            <h2 class="text-center text-uppercase">Score: <span id="score">0</span></h2>
+            <h2 class="text-center text-uppercase" id="title-score">Score: <span id="score">0</span></h2>
             <img id="image" style="width: 200px; height: 200px;" src="assets/toaster-empty.svg">
             <div class="row">
                 <button type="button" class="btn btn-success btn-icon" style="background-image: url(assets/icons/make.svg);" onclick="game.makeToast();"></button>

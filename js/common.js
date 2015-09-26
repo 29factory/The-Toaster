@@ -15,6 +15,14 @@ const STATUS_COAL = 3;
 var game = {
     state : STATE_MAINMENU,
     updateStatus : function (s) {
+        if (s == STATUS_TOAST) game.score++;
+        else if (s == STATUS_COAL) {
+            game.score--;
+            var score_title = document.getElementById("title-score");
+            score_title.classList.add("animation-burn");
+            score_title.addEventListener("animationend", function (e) {score_title.classList.remove("animation-burn")});
+        }
+        updateScore();
         game.toasterStatus = s;
         updateImage();
     },
@@ -23,9 +31,7 @@ var game = {
         else if (game.toasterStatus == STATUS_TOAST) game.updateStatus(STATUS_COAL);
     },
     changeBread : function () {
-        if (game.toasterStatus == STATUS_TOAST) game.score++;
         game.updateStatus(STATUS_BREAD);
-        updateScore();
     }
 };
 

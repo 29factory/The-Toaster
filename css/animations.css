@@ -1,0 +1,8 @@
+@keyframes burn {
+    from {color: red;}
+    to {color: inherit;}
+}
+.animation-burn {
+    animation-name: burn;
+    animation-duration: 1000ms;
+}
