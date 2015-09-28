@@ -30,6 +30,7 @@ function do_login()
 function do_logout()
 {
     unset($_SESSION["login"]);
+	unset($_SESSION["id"]);
 }
 
 function signup_unsafe($login, $pass, $email=null)
@@ -37,10 +38,7 @@ function signup_unsafe($login, $pass, $email=null)
     global $db;
     $query = $db->prepare("INSERT INTO users (login, email, password_md5) VALUES (?, ?, ?)");
     $query->bind_param("sss", $login, $email, md5($pass));
-    $query->execute();
-    $query->bind_result($result);
-    $query->fetch();
-    if ($result) return true; else return false;
+    if ($query->execute()) return true; else return false;
 }
 
 function signup($login, $pass, $email=null)

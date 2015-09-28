@@ -6,16 +6,13 @@ function save_gamestats_unsafe($score, $gm, $dt, $id_player)
 {
     global $db;
     $query = $db->prepare("INSERT INTO gamestats (score, gamemode, id_player, dt) VALUES (?, ?, ?, ?)");
-    $query->bind_param("iiis", $score, $gm, $id_player, $dt);
-    $query->execute();
-    $query->bind_result($result);
-    $query->fetch();
-    if ($result) return true; else return false;
+    $query->bind_param("isis", $score, ["toastbox"][$gm], $id_player, $dt);
+    if ($query->execute()) return true; else return false;
 }
 
 function save_gamestats($score, $gm)
 {
-    if (save_gamestats_unsafe($score, gm, date("Y-m-d H:i:s"), $_SESSION["id"])) return true; else return "Ошибка соединения с базой данных.";
+    if (save_gamestats_unsafe($score, $gm, date("Y-m-d H:i:s"), isset($_SESSION["id"]) ? $_SESSION["id"] : null)) return true; else return "Ошибка соединения с базой данных.";
 }
 
 function do_save_gamestats()
