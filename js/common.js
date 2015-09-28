@@ -32,6 +32,18 @@ var game = {
     },
     changeBread : function () {
         game.updateStatus(STATUS_BREAD);
+    },
+    endgame : function () {
+        var request = new XMLHttpRequest();
+        request.open("GET", "game.php?q=endgame&score="+game.score+"&gamemode="+GAMEMODE_TOASTBOX, true);
+        request.send();
+        game.score = 0;
+        game.toasterStatus = STATUS_EMPTY;
+        updateScore();
+        updateImage();
+    },
+    achieve : function () {
+
     }
 };
 
@@ -46,17 +58,6 @@ function updateImage() {
     else if (game.toasterStatus == STATUS_COAL) document.getElementById("image").setAttribute("src", "assets/toaster-coal.svg");
 }
 
-function endgame() {
-    var request = new XMLHttpRequest();
-    request.open("POST", "game.php?q=endgame&score="+game.score+"&gamemode="+GAMEMODE_TOASTBOX, true);
-    request.send();
-    // request.onreadystatechange = function() {if (request.readyState == 4) if (request.status == 200) alert(request.responseText)}
-    game.score = 0;
-    game.toasterStatus = STATUS_EMPTY;
-    updateScore();
-    updateImage();
-}
-
 function scene(nextState) {
     if (game.state == STATE_MAINMENU) {
         if (nextState == STATE_PROFILE || STATE_GAME) {
@@ -65,7 +66,7 @@ function scene(nextState) {
     } else if (game.state == STATE_PAUSE) {
         if (nextState == STATE_GAME) document.getElementById("pause").style.display = "none";
         else if (nextState == STATE_MAINMENU) {
-            endgame();
+            game.endgame();
             document.getElementById("pause").style.display = "none";
             document.getElementById("game").style.display = "none";
         }
