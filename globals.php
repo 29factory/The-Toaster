@@ -5,3 +5,4 @@ define("DB_USER", "user");
 define("DB_PASSWORD", "password");
 define("DBT_USERS", "users");
 define("DBT_GAMESTATS", "gamestats");
+define("DBT_ACHIEVEMENTS", "achievements");

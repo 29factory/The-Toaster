@@ -12,15 +12,25 @@ const STATUS_BREAD = 1;
 const STATUS_TOAST = 2;
 const STATUS_COAL = 3;
 
+const ajax = new XMLHttpRequest();
+
 var game = {
+    achievements : {},
     state : STATE_MAINMENU,
+    toasterStatus : STATUS_EMPTY,
     updateStatus : function (s) {
-        if (s == STATUS_TOAST) game.score++;
+        if (s == STATUS_TOAST) {
+            game.score++;
+            if (game.achievements[game.score]) {
+                game.achieve(game.score);
+                delete game.achievements[game.score];
+            }
+        }
         else if (s == STATUS_COAL) {
             game.score--;
             var score_title = document.getElementById("title-score");
             score_title.classList.add("animation-burn");
-            score_title.addEventListener("animationend", function (e) {score_title.classList.remove("animation-burn")});
+            score_title.addEventListener("animationend", function () {score_title.classList.remove("animation-burn")});
         }
         updateScore();
         game.toasterStatus = s;
@@ -34,16 +44,19 @@ var game = {
         game.updateStatus(STATUS_BREAD);
     },
     endgame : function () {
-        var request = new XMLHttpRequest();
-        request.open("GET", "game.php?q=endgame&score="+game.score+"&gamemode="+GAMEMODE_TOASTBOX, true);
-        request.send();
+        ajax.open("GET", "game.php?q=endgame&score="+game.score+"&gamemode="+GAMEMODE_TOASTBOX, true);
+        ajax.onreadystatechange = function () {if (ajax.readyState == 4) {ajax.onreadystatechange = null;}};
+        ajax.send();
         game.score = 0;
         game.toasterStatus = STATUS_EMPTY;
         updateScore();
         updateImage();
     },
     achieve : function () {
-
+        console.log(game.achievements[game.score]);
+        ajax.open("GET", "game.php?q=achievements.set&id="+game.score, true);
+        ajax.onreadystatechange = function () {if (ajax.readyState == 4) {ajax.onreadystatechange = null;}};
+        ajax.send();
     }
 };
 
@@ -93,15 +106,16 @@ function scene(nextState) {
     }
 }
 
-document.createElement("img").setAttribute("src", "assets/toaster-empty.svg");
-document.createElement("img").setAttribute("src", "assets/toaster-bread.svg");
-document.createElement("img").setAttribute("src", "assets/toaster-toast.svg");
-document.createElement("img").setAttribute("src", "assets/toaster-coal.svg");
-document.createElement("img").setAttribute("src", "assets/icons/change.svg");
-document.createElement("img").setAttribute("src", "assets/icons/make.svg");
-document.createElement("img").setAttribute("src", "assets/icons/pause.svg");
-document.createElement("img").setAttribute("src", "assets/icons/quit.svg");
-document.createElement("img").setAttribute("src", "assets/icons/resume.svg");
+ajax.open("GET", "game.php?q=achievements.get");
+ajax.onreadystatechange = function () {
+    if (ajax.readyState == 4) {
+        if (ajax.status == 200) {
+            game.achievements = JSON.parse(ajax.responseText);
+        }
+        ajax.onreadystatechange = null;
+    }
+};
+ajax.send();
 
 game.score = 0;
 game.toasterStatus = STATUS_EMPTY;
