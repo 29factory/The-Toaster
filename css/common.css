@@ -33,7 +33,7 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 .window {
-    width: 300px;
+    width: 330px;
     background-color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
@@ -43,6 +43,11 @@ body {
 .window > .row {
     margin: 10px -15px;
 }
+.achievement {
+    position: relative;
+    top: -95px;
+}
+
 #main-menu .btn {
     width: 100%;
     margin: 10px auto;
@@ -51,6 +56,10 @@ body {
     border-radius: 0;
     border: 1px solid transparent;
     box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
+    outline: none !important;
+}
+.btn:active{
+    background-position: 50% 60%;
 }
 .btn[disabled], .btn[disabled]:hover {
     opacity: .65;
@@ -64,11 +73,35 @@ body {
     background: no-repeat center;
     background-size: 50%;
 }
-.btn-success, .btn-success:hover, .btn-success:active, .btn-success:active:hover, .btn-success:focus {
-    border-color: #DEB887;
+.btn-icon-small {
+    width: 50px;
+    height: 50px;
+    background: no-repeat center;
+    background-size: 50%;
 }
+
+
+.btn-pause, .btn-quit, .btn-resume {
+    background-color: #6595ed;
+}
+.btn-pause:hover, .btn-quit:hover, .btn-resume:hover {
+    background-color: #5075ba;
+}
+.btn-help {
+    background-color: #999999;
+}
+.btn-help:hover {
+    background-color: #6595ed;
+}
+.btn-gaming {
+    background-color: #FF2A2A;
+}
+.btn-gaming:hover {
+    background-color: #a61b1b;
+}
+
 .btn-success {
-    background-color: #F5DEB3;
+    background-color: #FF2A2A;
 }
 .btn-success:hover {
     background-color: #E1CA9F;
@@ -76,19 +109,16 @@ body {
 .btn-success:active, .btn-success:active:hover, .btn-success:focus {
     background-color: #CDB68B;
 }
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:active:hover, .btn-primary:focus {
-    border-color: #4169E1;
-}
 .btn-primary {
-    background-color: #6495ED;
+    background-color: #6595ed;
 }
 .btn-primary:hover {
-    background-color: #4682B4;
+    background-color: #5075ba;
 }
 .btn-primary:active, .btn-primary:focus, .btn-primary:active:hover {
-    background-color: #326EA0;
+    background-color: #5075ba;
 }
 .btn-primary[disabled], .btn-primary[disabled]:hover {
-    background-color: #77b6db;
+    background-color: #5075ba;
     border-color: #689ebf;
 }

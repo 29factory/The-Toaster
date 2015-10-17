@@ -65,12 +65,42 @@ function screen($scr)
                         <input type="submit" class="btn btn-danger" value="Logout">
                     </form>
                 <?php elseif ($scr == SCREEN_GAME): ?>
-                    <h2 class="text-center text-uppercase" id="title-score">Score: <span id="score">0</span></h2>
+                    <div class="container window achievement" style="padding: 5px;">
+                        <div class="col-md-3" style="width: 70px; padding: 10px;">
+                            <img style="width: 50px; height: 50px; padding: 5px;border: 1px solid; border-color: #FF2A2A" src="assets/achievement.svg">
+                        </div>
+                        <div class="col-md-3" style="width: 180px;">
+                            <h4 class="text-uppercase text-left">Achievement get!</h4>
+                            <p>Some achievement</p>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 64; border-bottom: 1px solid; border-color: #c3c3c3">
+                        <div class="pause" style="display: none;">
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-resume btn-icon-small" style="background-image: url(assets/icons/resume.svg);"></button>
+                            </div>
+                            <div class="col-md-3" style="margin-left: 41.25px;">
+                                <button type="button" class="btn btn-quit btn-icon-small" style="background-image: url(assets/icons/quit.svg);" onclick="scene(STATE_MAINMENU);"></button>
+                            </div>
+                            <div class="col-md-3" style="margin-left: 41.25px;">
+                                <button type="button" class="btn btn-help btn-icon-small" style="background-image: url(assets/icons/help.svg);"></button>
+                            </div>
+                        </div>
+                        <div class="score">
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-pause btn-icon-small" style="background-image: url(assets/icons/pause.svg);" onclick="scene(STATE_PAUSE);"></button>
+                            </div>
+                            <div class="col-md-3" align="right" style="width: 247.5px;">
+                                <h2 class="text-left text-uppercase" id="title-score" style="position: relative; bottom: 10px;">
+                                    <p>Score: <span id="score">0</span></p>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
                     <img id="image" style="width: 200px; height: 200px;" src="assets/toaster-empty.svg">
                     <div class="row">
-                        <button type="button" class="btn btn-success btn-icon" style="background-image: url(assets/icons/make.svg);" onclick="game.makeToast();"></button>
-                        <button type="button" class="btn btn-success btn-icon" style="background-image: url(assets/icons/change.svg);" onclick="game.changeBread();"></button>
-                        <button type="button" class="btn btn-primary btn-icon" style="background-image: url(assets/icons/pause.svg);" onclick="scene(STATE_PAUSE);"></button>
+                        <button type="button" class="btn btn-gaming btn-icon" style="background-image: url(assets/icons/make.svg);" onclick="game.makeToast();"></button>
+                        <button type="button" class="btn btn-gaming btn-icon" style="background-image: url(assets/icons/change.svg);" onclick="game.changeBread();"></button>
                     </div>
                 <?php elseif ($scr == SCREEN_PAUSE): ?>
                     <h2 class="text-center">The Toaster <small>Paused</small></h2>
