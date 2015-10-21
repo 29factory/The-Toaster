@@ -41,6 +41,7 @@ function get_locked_achievements()
 function do_get_locked_achievements()
 {
     if (isset($_SESSION["id"])) get_locked_achievements();
+	else echo "{}";
 }
 
 function set_locked_achievements_unsafe($id, $id_player)

@@ -4,6 +4,7 @@ const STATE_SIGNUP = 2;
 const STATE_GAME = 3;
 const STATE_PAUSE = 4;
 const STATE_PROFILE = 5;
+const STATE_ABOUT = 6;
 
 const GAMEMODE_TOASTBOX = 0;
 
@@ -53,7 +54,11 @@ var game = {
         updateImage();
     },
     achieve : function () {
-        console.log(game.achievements[game.score]);
+        // console.log(game.achievements[game.score]);
+        document.getElementById("achievement-text").innerHTML = game.achievements[game.score];
+        var achievement = document.getElementById("achievement");
+        achievement.classList.add("animation-achieve");
+        achievement.addEventListener("animationend", function () {achievement.classList.remove("animation-achieve")});
         ajax.open("GET", "game.php?q=achievements.set&id="+game.score, true);
         ajax.onreadystatechange = function () {if (ajax.readyState == 4) {ajax.onreadystatechange = null;}};
         ajax.send();
@@ -89,6 +94,8 @@ function scene(nextState) {
         document.getElementById("profile").style.display = "none";
     } else if (game.state == STATE_SIGNUP) {
         document.getElementById("signup").style.display = "none";
+    } else if (game.state == STATE_ABOUT) {
+        document.getElementById("about").style.display = "none";
     }
     game.state = nextState;
     if (game.state == STATE_MAINMENU) {
@@ -103,6 +110,8 @@ function scene(nextState) {
         document.getElementById("profile").style.display = "";
     } else if (game.state == STATE_SIGNUP) {
         document.getElementById("signup").style.display = "";
+    } else if (game.state == STATE_ABOUT) {
+        document.getElementById("about").style.display = "";
     }
 }
 

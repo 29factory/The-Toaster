@@ -14,9 +14,11 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animations.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 <?php screen(SCREEN_MAINMENU); ?>
+<?php screen(SCREEN_ABOUT); ?>
 <?php screen(SCREEN_LOGIN); ?>
 <?php screen(SCREEN_SIGNUP); ?>
 <?php screen(SCREEN_PROFILE); ?>
@@ -25,6 +27,5 @@ session_start();
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
-<script src="js/animation.js"></script>
 </body>
 </html>
