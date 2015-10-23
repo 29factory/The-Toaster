@@ -59,10 +59,21 @@ function screen($scr)
                         </div>
                     </form>
                 <?php elseif ($scr == SCREEN_ABOUT): ?>
-                    <h2 class="text-center">About</h2>
-                    <div style="margin-bottom: 10px;">
-                        <button type="button" class="btn btn-primary" onclick="scene(STATE_MAINMENU);">Back</button>
+                    <div class="row" style="border-bottom: 1px solid; border-color: #cdcdcd; padding-bottom: 10px;">
+                        <div style="text-align:left; position: absolute; height: 50px; width: 50px; float: left; margin: 10px; padding: 10px; background-color: #6595ed;">
+                            <img style="height: 30px; width: 30px;" src="assets/icons/about.svg">
+                        </div>
+                        <h2 class="text-center">About</h2>
                     </div>
+                    <div>
+                        <p><small><font color="#999999">Version 0.6.0</font></small></p>
+                        <p align="left">The Toaster created by 29FACTORY Team to make your Internet more enjoyable.</p>
+                        <p align="left">Want to help? You can <a href="http://vk.com/thetoaster">contact us</a> and join our community!</p>
+                    </div>
+                    <div style="margin-top: 30px; margin-bottom: 10px;">
+                        <button type="button" class="btn btn-menu" onclick="scene(STATE_MAINMENU);">Back</button>
+                    </div>
+                    <p><small><font color="#999999">29FACTORY TEAM, 2015</font></small></p>
                 <?php elseif ($scr == SCREEN_PROFILE && isset($_SESSION["login"])): ?>
                     <h2 class="text-center"><?= $_SESSION["login"] ?></h2>
                     <form method="post" action="auth.php">
@@ -119,7 +130,9 @@ function screen($scr)
             </div>
             <?php if ($scr == SCREEN_GAME): ?>
                 <div id="achievement" class="container window" style="opacity: 0;">
-                    <img style="width: 80px; height: 80px; float: left; margin: 10px; margin-left: -10px;" src="assets/achievement.svg">
+                    <div style="width: 80px; height: 80px; float: left; margin: 10px; margin-left: -10px; padding: 20px; background-color: #FF2A2A;">
+                        <img src="assets/icons/achievement.svg">
+                    </div>
                     <h3>Achievement get!</h3>
                     <h4 id="achievement-text">You don`t see it</h4>
                 </div>

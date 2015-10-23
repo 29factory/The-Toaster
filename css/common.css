@@ -2,8 +2,12 @@
     font-family: Pixel;
     src: url("../fonts/pixcyr2.ttf");
 }
-* {
-    font-family: Pixel, sans-serif;
+@font-face {
+    font-family: Hardpixel;
+    src: url("../fonts/hardpixel.ttf");
+}
+p {
+    font-family: Hardpixel;
 }
 html, body {
     width: 100%;
@@ -11,6 +15,7 @@ html, body {
 }
 body {
     background: url("../assets/background.jpg") repeat;
+    font-family: Pixel, sans-serif;
 }
 .centered {
     position: absolute;
@@ -81,9 +86,9 @@ body {
 .btn-ingame:hover {
     background-color: #a61b1b;
 }
-.btn-menu, .btn-menu[disabled], .btn-menu[disabled]:hover {
+.btn-menu, .btn-menu[disabled], .btn-menu[disabled]:hover, .btn-menu:focus {
     background-color: #6595ed;
 }
-.btn-menu:hover, .btn-menu:active, .btn-menu:focus, .btn-menu:active:hover {
+.btn-menu:hover, .btn-menu:active, .btn-menu:active:hover {
     background-color: #5075ba;
 }
