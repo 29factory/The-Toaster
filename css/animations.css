@@ -13,6 +13,7 @@
     100% {opacity: 0}
 }
 .animation-achieve {
+	display: inherit !important;
     animation-name: achieve;
     animation-duration: 3000ms;
 }

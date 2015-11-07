@@ -14,7 +14,7 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animations.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
 </head>
 <body>
 <?php screen(SCREEN_MAINMENU); ?>

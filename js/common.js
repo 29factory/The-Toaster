@@ -59,7 +59,7 @@ var game = {
         var achievement = document.getElementById("achievement");
         achievement.classList.add("animation-achieve");
         achievement.addEventListener("animationend", function () {achievement.classList.remove("animation-achieve")});
-        ajax.open("GET", "game.php?q=achievements.set&id="+game.score, true);
+        ajax.open("GET", "game.php?q=achievements.set&achievement="+game.score, true);
         ajax.onreadystatechange = function () {if (ajax.readyState == 4) {ajax.onreadystatechange = null;}};
         ajax.send();
     }

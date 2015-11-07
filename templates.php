@@ -59,21 +59,20 @@ function screen($scr)
                         </div>
                     </form>
                 <?php elseif ($scr == SCREEN_ABOUT): ?>
-                    <div class="row" style="border-bottom: 1px solid; border-color: #cdcdcd; padding-bottom: 10px;">
-                        <div style="text-align:left; position: absolute; height: 50px; width: 50px; float: left; margin: 10px; padding: 10px; background-color: #6595ed;">
+                    <div class="row" style="padding-bottom: 10px;">
+                        <div style="text-align:left; position: absolute; height: 50px; width: 50px; float: left; margin: 0; margin-left: 10px; padding: 10px; background-color: #6595ed;">
                             <img style="height: 30px; width: 30px;" src="assets/icons/about.svg">
                         </div>
-                        <h2 class="text-center">About</h2>
+                        <h2 class="text-center">About<br><small style="opacity: .6;">Version 0.6.0</small></h2>
                     </div>
                     <div>
-                        <p><small><font color="#999999">Version 0.6.0</font></small></p>
-                        <p align="left">The Toaster created by 29FACTORY Team to make your Internet more enjoyable.</p>
-                        <p align="left">Want to help? You can <a href="http://vk.com/thetoaster">contact us</a> and join our community!</p>
+                        <p style="text-align:left;">The Toaster created by 29FACTORY Team to make your Internet more enjoyable.</p>
+                        <p style="text-align:left;">Want to help? You can <a href="http://vk.com/thetoaster">contact us</a> and join our community!</p>
                     </div>
                     <div style="margin-top: 30px; margin-bottom: 10px;">
                         <button type="button" class="btn btn-menu" onclick="scene(STATE_MAINMENU);">Back</button>
                     </div>
-                    <p><small><font color="#999999">29FACTORY TEAM, 2015</font></small></p>
+                    <p><small style="opacity: .5;">29FACTORY TEAM, 2015</small></p>
                 <?php elseif ($scr == SCREEN_PROFILE && isset($_SESSION["login"])): ?>
                     <h2 class="text-center"><?= $_SESSION["login"] ?></h2>
                     <form method="post" action="auth.php">
@@ -82,38 +81,11 @@ function screen($scr)
                         <input type="submit" class="btn btn-danger" value="Logout">
                     </form>
                 <?php elseif ($scr == SCREEN_GAME): ?>
-                    <!-- <div class="container window achievement" style="padding: 5px;">
-                        <div class="col-md-3" style="width: 70px; padding: 10px;">
-                            <img style="width: 50px; height: 50px; padding: 5px;border: 1px solid; border-color: #FF2A2A" src="assets/achievement.svg">
-                        </div>
-                        <div class="col-md-3" style="width: 180px;">
-                            <h4 class="text-uppercase text-left">Achievement get!</h4>
-                            <p>Some achievement</p>
-                        </div>
-                    </div> -->
                     <div class="row">
-                        <!-- <div class="pause" style="display: none;">
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-resume btn-icon-small" style="background-image: url(assets/icons/resume.svg);"></button>
-                            </div>
-                            <div class="col-md-3" style="margin-left: 41.25px;">
-                                <button type="button" class="btn btn-quit btn-icon-small" style="background-image: url(assets/icons/quit.svg);" onclick="scene(STATE_MAINMENU);"></button>
-                            </div>
-                            <div class="col-md-3" style="margin-left: 41.25px;">
-                                <button type="button" class="btn btn-help btn-icon-small" style="background-image: url(assets/icons/help.svg);"></button>
-                            </div>
-                        </div> -->
                         <div style="text-align:left; position: absolute;">
                              <button type="button" class="btn btn-icon btn-menu btn-small" style="background-image: url(assets/icons/pause.svg); margin-left: 10px;" onclick="scene(STATE_PAUSE);"></button>
                         </div>
                         <h2 class="text-center text-uppercase" id="title-score">Score: <span id="score">0</span></h2>
-                        <!-- <div class="score">
-                            <div class="col-md-3" align="right" style="width: 247.5px;">
-                                <h2 class="text-left text-uppercase" id="title-score" style="position: relative; bottom: 10px;">
-                                    <p>Score: <span id="score">0</span></p>
-                                </h2>
-                            </div>
-                        </div> -->
                     </div>
                     <img id="image" style="width: 200px; height: 200px;" src="assets/toaster-empty.svg">
                     <div class="row">
@@ -129,7 +101,7 @@ function screen($scr)
                 <?php endif; ?>
             </div>
             <?php if ($scr == SCREEN_GAME): ?>
-                <div id="achievement" class="container window" style="opacity: 0;">
+                <div id="achievement" class="container window" style="opacity: 0; display: none;">
                     <div style="width: 80px; height: 80px; float: left; margin: 10px; margin-left: -10px; padding: 20px; background-color: #FF2A2A;">
                         <img src="assets/icons/achievement.svg">
                     </div>

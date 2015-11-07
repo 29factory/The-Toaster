@@ -23,7 +23,7 @@ function do_save_gamestats()
 function get_locked_achievements_unsafe($id_player)
 {
     global $db;
-    $query = $db->prepare("SELECT ID FROM achievements WHERE id_player=?");
+    $query = $db->prepare("SELECT achievement FROM achievements WHERE id_player=?");
     $query->bind_param("i", $id_player);
     $query->execute();
     $achievements = json_decode(file_get_contents("achievements.json"), true);
@@ -44,22 +44,22 @@ function do_get_locked_achievements()
 	else echo "{}";
 }
 
-function set_locked_achievements_unsafe($id, $id_player)
+function set_locked_achievements_unsafe($a, $id_player)
 {
     global $db;
-    $query = $db->prepare("INSERT INTO achievements (ID, id_player) VALUES (?, ?)");
-    $query->bind_param("ii", $id, $id_player);
+    $query = $db->prepare("INSERT INTO achievements (achievement, id_player) VALUES (?, ?)");
+    $query->bind_param("ii", $a, $id_player);
     if ($query->execute()) return true; else return false;
 }
 
-function set_locked_achievements($id)
+function set_locked_achievements($a)
 {
-    if (set_locked_achievements_unsafe($id, $_SESSION["id"])) return true; else return "Ошибка соединения с базой данных.";
+    if (set_locked_achievements_unsafe($a, $_SESSION["id"])) return true; else return "Ошибка соединения с базой данных.";
 }
 
 function do_set_locked_achievements()
 {
-    if (isset($_SESSION["id"]) && isset($_GET["id"])) set_locked_achievements($_GET["id"]);
+    if (isset($_SESSION["id"]) && isset($_GET["achievement"])) set_locked_achievements($_GET["achievement"]);
 }
 
 session_start();
