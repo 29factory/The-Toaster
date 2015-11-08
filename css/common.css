@@ -1,9 +1,9 @@
 @font-face {
-    font-family: Pixel;
-    src: url("../fonts/pixcyr2.ttf");
+    font-family: Hardpixel;
+    src: url("../fonts/hardpixel_regular.otf");
 }
 * {
-    font-family: Pixel, sans-serif;
+    font-family: Hardpixel, sans-serif;
 }
 html, body {
     width: 100%;
@@ -33,7 +33,7 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 .window {
-    width: 300px;
+    width: 330px;
     background-color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
@@ -48,15 +48,19 @@ body {
     margin: 10px auto;
 }
 .btn {
+    color: white;
     border-radius: 0;
     border: 1px solid transparent;
     box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
+    /* outline: none !important; */
+}
+.btn:hover, .btn:focus, .btn:hover:active {
+    color: white;
 }
 .btn[disabled], .btn[disabled]:hover {
-    opacity: .65;
-}
-.btn[disabled] {
     cursor: auto;
+    color: white;
+    opacity: .65;
 }
 .btn-icon {
     width: 90px;
@@ -64,31 +68,22 @@ body {
     background: no-repeat center;
     background-size: 50%;
 }
-.btn-success, .btn-success:hover, .btn-success:active, .btn-success:active:hover, .btn-success:focus {
-    border-color: #DEB887;
+.btn-icon:active {
+    background-position: 50% 60%;
 }
-.btn-success {
-    background-color: #F5DEB3;
+.btn-small {
+    width: 50px;
+    height: 50px;
 }
-.btn-success:hover {
-    background-color: #E1CA9F;
+.btn-ingame {
+    background-color: #FF2A2A;
 }
-.btn-success:active, .btn-success:active:hover, .btn-success:focus {
-    background-color: #CDB68B;
+.btn-ingame:hover {
+    background-color: #a61b1b;
 }
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:active:hover, .btn-primary:focus {
-    border-color: #4169E1;
+.btn-menu, .btn-menu[disabled], .btn-menu[disabled]:hover, .btn-menu:focus {
+    background-color: #6595ed;
 }
-.btn-primary {
-    background-color: #6495ED;
-}
-.btn-primary:hover {
-    background-color: #4682B4;
-}
-.btn-primary:active, .btn-primary:focus, .btn-primary:active:hover {
-    background-color: #326EA0;
-}
-.btn-primary[disabled], .btn-primary[disabled]:hover {
-    background-color: #77b6db;
-    border-color: #689ebf;
+.btn-menu:hover, .btn-menu:active, .btn-menu:active:hover {
+    background-color: #5075ba;
 }

@@ -1,0 +1,19 @@
+@keyframes burn {
+    from {color: red;}
+    to {color: inherit;}
+}
+.animation-burn {
+    animation-name: burn;
+    animation-duration: 1000ms;
+}
+@keyframes achieve {
+    0% {opacity: 0}
+    20% {opacity: 1}
+    80% {opacity: 1}
+    100% {opacity: 0}
+}
+.animation-achieve {
+	display: inherit !important;
+    animation-name: achieve;
+    animation-duration: 3000ms;
+}
