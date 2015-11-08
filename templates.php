@@ -102,7 +102,7 @@ function screen($scr)
             </div>
             <?php if ($scr == SCREEN_GAME): ?>
                 <div id="achievement" class="container window" style="opacity: 0; display: none;">
-                    <div style="width: 80px; height: 80px; float: left; margin: 10px; margin-left: -10px; padding: 20px; background-color: #FF2A2A;">
+                    <div style="width: 80px; height: 80px; float: left; margin: 10px; margin-left: -10px; padding: 10px; background-color: #FF2A2A;">
                         <img src="assets/icons/achievement.svg">
                     </div>
                     <h3>Achievement get!</h3>
